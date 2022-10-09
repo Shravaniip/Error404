@@ -7,7 +7,7 @@ from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 
-from AIScrapper.utils import (
+from autoscraper.utils import (
     FuzzyText,
     ResultItem,
     get_non_rec_text,
@@ -19,19 +19,19 @@ from AIScrapper.utils import (
 )
 
 
-class AIScrapper(object):
+class AutoScraper(object):
     """
-    AIScrapper : A Lightweight Web Scraper in Python.
-    AIScrapper automatically learns a set of rules required to extract "said" content
+    AutoScraper : A Smart, Automatic, Fast and Lightweight Web Scraper for Python.
+    AutoScraper automatically learns a set of rules required to extract the needed content
         from a web page. So the programmer doesn't need to explicitly construct the rules.
     Attributes
     ----------
     stack_list: list
-        List of rules learned by AIScraper
+        List of rules learned by AutoScraper
     Methods
     -------
     build() - Learns a set of rules represented as stack_list based on the wanted_list,
-        which learns about scraping similar elements from other web pages.
+        which can be reused for scraping similar elements from other web pages in the future.
     get_result_similar() - Gets similar results based on the previously learned rules.
     get_result_exact() - Gets exact results based on the previously learned rules.
     get_results() - Gets exact and similar results based on the previously learned rules.
@@ -42,7 +42,8 @@ class AIScrapper(object):
     """
 
     request_headers = {
-        "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/100.0.4896.60 Safari/537.36"
+        "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_5) AppleWebKit/537.36 \
+            (KHTML, like Gecko) Chrome/84.0.4147.135 Safari/537.36"
     }
 
     def __init__(self, stack_list=None):
@@ -187,12 +188,12 @@ class AIScrapper(object):
             URL of the target web page. You should either pass url or html or both.
         wanted_list: list of strings or compiled regular expressions, optional
             A list of needed contents to be scraped.
-                AIScrapper learns a set of rules to scrape these targets. If specified,
+                AutoScraper learns a set of rules to scrape these targets. If specified,
                 wanted_dict will be ignored.
         wanted_dict: dict, optional
             A dict of needed contents to be scraped. Keys are aliases and values are list of target texts
                 or compiled regular expressions.
-                AIScrapper learns a set of rules to scrape these targets and sets its aliases.
+                AutoScraper learns a set of rules to scrape these targets and sets its aliases.
         html: str, optional
             An HTML string can also be passed instead of URL.
                 You should either pass url or html or both.
